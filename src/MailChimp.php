@@ -232,51 +232,49 @@ class MailChimp
         }
 
         $ch = curl_init();
-        if($ch){
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeader);
-            curl_setopt($ch, CURLOPT_USERAGENT, 'Sreedev/laravel-mailchimp (github.com/rsreedevan/laravel-mailchimp)');
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_VERBOSE, true);
-            curl_setopt($ch, CURLOPT_HEADER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->verify_ssl);
-            curl_setopt($ch, CURLOPT_ENCODING, '');
-            curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeader);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Sreedev/laravel-mailchimp (github.com/rsreedevan/laravel-mailchimp)');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->verify_ssl);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 
-            switch ($http_verb) {
-                case 'post':
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    $this->attachRequestPayload($ch, $args);
-                    break;
+        switch ($http_verb) {
+            case 'post':
+                curl_setopt($ch, CURLOPT_POST, true);
+                $this->attachRequestPayload($ch, $args);
+                break;
 
-                case 'get':
-                    $query = http_build_query($args, '', '&');
-                    curl_setopt($ch, CURLOPT_URL, $url . '?' . $query);
-                    break;
+            case 'get':
+                $query = http_build_query($args, '', '&');
+                curl_setopt($ch, CURLOPT_URL, $url . '?' . $query);
+                break;
 
-                case 'delete':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-                    break;
+            case 'delete':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+                break;
 
-                case 'patch':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                    $this->attachRequestPayload($ch, $args);
-                    break;
+            case 'patch':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+                $this->attachRequestPayload($ch, $args);
+                break;
 
-                case 'put':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-                    $this->attachRequestPayload($ch, $args);
-                    break;
-            }
-
-            $responseContent     = curl_exec($ch);
-            $response['headers'] = curl_getinfo($ch);
-            $response            = $this->setResponseState($response, $responseContent, $ch);
-            $formattedResponse   = $this->formatResponse($response);
-
-            curl_close($ch);
+            case 'put':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+                $this->attachRequestPayload($ch, $args);
+                break;
         }
+
+        $responseContent     = curl_exec($ch);
+        $response['headers'] = curl_getinfo($ch);
+        $response            = $this->setResponseState($response, $responseContent, $ch);
+        $formattedResponse   = $this->formatResponse($response);
+
+        curl_close($ch);
 
         $isSuccess = $this->determineSuccess($response, $formattedResponse, $timeout);
 
