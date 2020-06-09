@@ -10,6 +10,8 @@ Requires PHP 7.2+
 
 [![Build Status](https://travis-ci.org/rsreedevan/laravel-mailchimp.svg?branch=master)](https://travis-ci.org/drewm/mailchimp-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drewm/mailchimp-api/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 Installation
 ------------
