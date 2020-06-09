@@ -11,8 +11,6 @@ Requires PHP 7.2+
 [![Build Status](https://travis-ci.org/rsreedevan/laravel-mailchimp.svg?branch=master)](https://travis-ci.org/drewm/mailchimp-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drewm/mailchimp-api/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-[![Build Status](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/badges/build.png?b=master)](https://scrutinizer-ci.com/g/rsreedevan/laravel-mailchimp/build-status/master)
-
 Installation
 ------------
 
@@ -98,6 +96,53 @@ if (MailChimp::success()) {
 }
 ```
 
+  
+Batch Operations
+----------------
+
+The MailChimp [Batch Operations](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-batch-operations/) this enables you to complete multiple operations with a single call. 
+Eg: Adding thousands of members to a list - you can perform this in one request rather than thousands.
+
+```php
+use Sreedev\MailChimp\Facades\MailChimp;
+
+$Batch 	   = MailChimp::newBatch()
+```
+
+You need to set an ID for the operation as the first argument, and also that you won't get a response. The ID is used for finding the result of this request in the combined response from the batch operation.
+
+```php
+$list_id ="abcd";
+$Batch->post("op1", "lists/$list_id/members", [
+				'email_address' => 'subscriber1@example.com',
+				'status'        => 'subscribed',
+			]);
+
+$Batch->post("op2", "lists/$list_id/members", [
+				'email_address' => 'subscriber2@example.com',
+				'status'        => 'subscribed',
+			]);
+
+$Batch->post("op3", "lists/$list_id/members", [
+				'email_address' => 'subscriber3@example.com',
+				'status'        => 'subscribed',
+			]);
+```
+
+Once you've finished all the requests that should be in the batch, you need to process it.
+
+```php
+$result = $Batch->process();
+```
+
+The result includes a batch ID. At a later point, you can check the status of your batch:
+
+```php
+MailChimp::newBatch($batchId);
+$result = $Batch->checkStatus();
+```
+
+When your batch is finished, you can download the results (in JSON format) from the URL given in the response.
 
 Troubleshooting
 ---------------
@@ -125,8 +170,6 @@ If your server's CA root certificates are not up to date you may find that SSL v
 Contributing
 ------------
 
-This is a fairly simple wrapper, but it has been made much better by contributions from those using it. If you'd like to suggest an improvement, please raise an issue to discuss it before making your pull request.
+This is a  simple wrapper, but contributions can make it beeter. If you'd like to suggest an improvement, please raise an issue to discuss it before making your pull request.
 
 Pull requests for bugs are more than welcome - please explain the bug you're trying to fix in the message.
-
-There are a small number of PHPUnit unit tests. To get up and running, copy `.env.example` to `.env` and add your API key details. Unit testing against an API is obviously a bit tricky, but I'd welcome any contributions to this. It would be great to have more test coverage.
