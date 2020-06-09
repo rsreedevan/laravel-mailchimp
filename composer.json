@@ -1,0 +1,25 @@
+{
+    "name": "sreedev/laravel-mailchimp",
+    "description": "Laravel MailChimp Package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sreedev",
+            "email": "reachme@sreedevr.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "Sreedev\\MailChimp\\": "src/"        
+        }
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Sreedev\\MailChimp\\MailChimpServiceProvider"
+            ]
+        }
+    }
+}
