@@ -90,13 +90,13 @@ class Batch
     }
 
     /**
-     * Execute the batch request
+     * Process the batch request
      *
      * @param int $timeout Request timeout in seconds (optional)
      *
      * @return  array|false   Assoc array of API response, decoded from JSON
      */
-    public function execute($timeout = 10)
+    public function process($timeout = 10)
     {
         $req = array('operations' => $this->operations);
 
