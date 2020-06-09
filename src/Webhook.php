@@ -3,10 +3,8 @@
 namespace Sreedev\Mailchimp;
 
 /**
- * A MailChimp Webhook request.
- * How to Set Up Webhooks: http://eepurl.com/bs-j_T
- *
- * @author Drew McLellan <drew.mclellan@gmail.com>
+ * MailChimp Webhook
+ * @author Sreedev <reachme@sreedevr.com>
  */
 class Webhook
 {

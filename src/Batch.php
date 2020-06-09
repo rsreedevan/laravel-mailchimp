@@ -6,7 +6,7 @@ namespace Sreedev\Mailchimp;
  * A MailChimp Batch operation.
  * http://developer.mailchimp.com/documentation/mailchimp/reference/batches/
  *
- * @author Drew McLellan <drew.mclellan@gmail.com>
+ * @author Sreedev <reachme@sreedevr.com>
  */
 class Batch
 {

@@ -5,10 +5,10 @@ namespace Sreedev\Mailchimp;
 /**
  * Super-simple, minimum abstraction MailChimp API v3 wrapper
  * MailChimp API v3: http://developer.mailchimp.com
- * This wrapper: https://github.com/drewm/mailchimp-api
+ * This wrapper: https://github.com/rsreedevan/laravel-mailchimp
  *
- * @author  Drew McLellan <drew.mclellan@gmail.com>
- * @version 2.5
+ * @author  Sreedev <reachme@sreedevr.com>
+ * @version 1.0
  */
 class MailChimp
 {
