@@ -19,7 +19,7 @@ class MailChimpServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('mailchimp', function($app){
+        $this->app->singleton('mailchimp', function($app){
             return new MailChimp(config('mailchimp.MAIL_CHIMP_API_KEY'));
         });
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'mailchimp'); 

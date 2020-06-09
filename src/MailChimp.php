@@ -66,7 +66,7 @@ class MailChimp
      */
     public function new_batch($batch_id = null)
     {
-        return new Batch($this, $batch_id);
+        return new \Sreedev\MailChimp\Batch($this, $batch_id);
     }
 
     /**
