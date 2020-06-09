@@ -60,7 +60,7 @@ Update a list member with more information (using `patch` to update):
 
 ```php
 $list_id = 'b1234346';
-$subscriber_hash = MailChimp::subscriberHash('davy@example.com');
+$subscriber_hash = MailChimp::subscriberHash('subscriber@example.com');
 
 $result = MailChimp::patch("lists/$list_id/members/$subscriber_hash", [
 				'merge_fields' => ['FNAME'=>'First', 'LNAME'=>'Man'],
